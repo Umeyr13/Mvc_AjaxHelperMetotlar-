@@ -1,0 +1,57 @@
+﻿@model Mvc_A_Metotları.Models.Kisi
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+@using (Ajax.BeginForm("Index2", new AjaxOptions() { HttpMethod = "POST", LoadingElementId = "loading", LoadingElementDuration = 300, UpdateTargetId = "liste", InsertionMode = InsertionMode.InsertAfter }))//InsertAfter dedik. Zaten mevcut olanı koru ve mecut olandan sonra getirdiklerini yaz dedik.
+ {
+    
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.LabelFor(x => x.isim)
+            </div>
+
+            <div class="col-md-10">
+                @Html.TextBoxFor(x => x.isim, new { @class = "form-control" })
+            </div>
+        </div>
+            <br />
+            <div class="col-md-12">
+
+                @Html.TextBoxFor(x => x.Soyisim, new { @class = "form-control" })
+            </div>
+            <br />
+            <div class="col-md-12">
+
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            </div>
+    </div>
+        
+
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-success">getir</button>
+    </div>
+    <hr />
+    <br />
+    <ul class="list-group" id="liste">
+        <li id="loading" style="display:none" class="list-group-item list-group-item-warning">Yükleniyor</li>
+        @if (ViewBag.kisiler != null)
+        {
+            foreach (var item in ViewBag.kisiler)
+            {
+                <li class="list-group-item" id="id_@item.Id"> @item.isim </li>
+            }
+        }
+
+    </ul>
+
+
+
+  
+
+
+
+ }
